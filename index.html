@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ms History's Ultimate Revision Quiz Show: Hitler & Nazi Germany</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            studioBg: '#0f0826',
+            studioPanel: '#1a103c',
+            neonCyan: '#00f0ff',
+            neonMagenta: '#ff007f',
+            neonGold: '#ffd700',
+            neonPurple: '#9d4edd',
+          },
+          animation: {
+            pulseGlow: 'pulseGlow 2s infinite alternate',
+            float: 'float 3s ease-in-out infinite',
+            sparkle: 'sparkle 1.5s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%': { boxShadow: '0 0 15px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2)' },
+              '100%': { boxShadow: '0 0 30px rgba(255, 0, 127, 0.8), inset 0 0 20px rgba(255, 0, 127, 0.4)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
+            },
+            sparkle: {
+              '0%': { opacity: '0.3', transform: 'scale(0.95)' },
+              '100%': { opacity: '1', transform: 'scale(1.05)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0b051b;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(157, 78, 221, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 0, 127, 0.15) 0%, transparent 60%);
+      color: #f3f4f6;
+      min-height: 100vh;
+      user-select: none;
+    }
+
+    .glass-panel {
+      background: rgba(26, 16, 60, 0.75);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fff5c0 0%, #ffd700 50%, #ff8c00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-quiz {
+      background: linear-gradient(135deg, #2a1b5c 0%, #160c36 100%);
+      border: 2px solid #00f0ff;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-quiz:hover:not(:disabled) {
+      background: linear-gradient(135deg, #3d2885 0%, #2a1b5c 100%);
+      border-color: #ffd700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+      transform: scale(1.02);
+    }
+
+    .btn-quiz.correct {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.8) !important;
+      color: #ffffff !important;
+    }
+
+    .btn-quiz.wrong {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.8) !important;
+      color: #ffffff !important;
+    }
+
+    .speech-bubble {
+      position: relative;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 24px;
+      border-width: 8px 12px 8px 0;
+      border-style: solid;
+      border-color: transparent #ffffff transparent transparent;
+    }
+
+    @media (max-width: 768px) {
+      .speech-bubble::after {
+        left: 24px;
+        top: -12px;
+        border-width: 0 8px 12px 8px;
+        border-color: transparent transparent #ffffff transparent;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased flex flex-col justify-between min-height-screen p-2 md:p-6">
+
+  <!-- TOP HEADER & TITLE BAR -->
+  <header class="max-w-6xl w-full mx-auto mb-4">
+    <div class="glass-panel rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 border-l-4 border-l-neonGold">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-neonMagenta to-neonCyan flex items-center justify-center font-display font-black text-xl text-white shadow-lg animate-pulse">
+          TV
+        </div>
+        <div>
+          <h1 class="font-display font-black text-xl md:text-2xl gold-gradient-text tracking-wide">
+            MS HISTORY'S ULTIMATE REVISION QUIZ SHOW
+          </h1>
+          <p class="text-xs text-cyan-300 font-semibold tracking-wider uppercase">
+            SQA History Topic: Hitler & Nazi Germany (1919–1939)
+          </p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button id="soundToggleBtn" onclick="toggleSound()" class="px-3 py-1.5 rounded-lg bg-indigo-900/80 hover:bg-indigo-800 text-xs text-yellow-300 font-bold border border-indigo-500 transition">
+          🔊 Sound: ON
+        </button>
+        <button onclick="resetGame()" class="px-3 py-1.5 rounded-lg bg-pink-900/80 hover:bg-pink-800 text-xs text-pink-200 font-bold border border-pink-500 transition">
+          🔄 Restart Game
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN GAME STUDIO AREA -->
+  <main class="max-w-6xl w-full mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- LEFT / MAIN CONTENT AREA (Presenter + Question + Options) -->
+    <div class="lg:col-span-8 flex flex-col gap-5 w-full">
+
+      <!-- PRESENTER & SPEECH BUBBLE ROW -->
+      <div class="glass-panel rounded-2xl p-4 md:p-5 flex flex-col md:flex-row items-center md:items-start gap-4 transition-all">
+        
+        <!-- Ms History Avatar -->
+        <div class="relative flex-shrink-0 flex flex-col items-center">
+          <div id="presenterAvatar" class="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-neonGold bg-gradient-to-b from-purple-900 to-indigo-950 p-1 shadow-2xl flex items-center justify-center animate-float">
+            <!-- Dynamic SVG injected via JS -->
+          </div>
+          <span class="mt-2 text-xs font-black uppercase tracking-widest text-neonGold bg-purple-950/90 px-3 py-0.5 rounded-full border border-yellow-500/40">
+            Ms History
+          </span>
+        </div>
+
+        <!-- Presenter Dialogue Speech Bubble -->
+        <div class="speech-bubble flex-1 p-4 md:p-5 w-full">
+          <div id="presenterNameTag" class="text-xs font-extrabold text-purple-700 uppercase tracking-wider mb-1">
+            Studio Host
+          </div>
+          <div id="presenterSpeech" class="text-sm md:text-base font-semibold leading-relaxed text-gray-900">
+            Welcome to the Studio! I'm Ms History, and I'm super excited to guide you through your Hitler & Nazi Germany revision! Let's get that £250,000 Trophy!
+          </div>
+        </div>
+
+      </div>
+
+      <!-- QUESTION DISPLAY BOX -->
+      <div id="questionContainer" class="glass-panel rounded-2xl p-5 md:p-6 flex flex-col gap-4 relative overflow-hidden">
+        
+        <!-- Level & Question Category Indicator -->
+        <div class="flex items-center justify-between text-xs font-bold text-cyan-300 border-b border-purple-800/80 pb-3">
+          <span id="questionCategory" class="uppercase tracking-widest bg-purple-900/60 px-2.5 py-1 rounded border border-purple-500/40">
+            Key Issue 1: Weimar & Rise to Power
+          </span>
+          <span id="questionNumberTag" class="text-neonGold font-display font-black text-sm">
+            QUESTION 1 OF 10
+          </span>
+        </div>
+
+        <!-- Question Text -->
+        <div id="questionText" class="text-base md:text-lg lg:text-xl font-bold leading-snug text-white py-2 min-h-[70px] flex items-center">
+          Click "START GAME" to begin your revision quiz show!
+        </div>
+
+        <!-- Options Grid -->
+        <div id="optionsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+          <!-- Options rendered dynamically -->
+        </div>
+
+        <!-- Historical Educational Debrief Box (shown after answering) -->
+        <div id="debriefBox" class="hidden mt-4 p-4 rounded-xl bg-indigo-950/90 border-2 border-cyan-400 text-cyan-100 text-xs md:text-sm leading-relaxed animate-fade-in">
+          <div class="font-bold text-neonGold uppercase tracking-wider mb-1 flex items-center gap-1">
+            <span>📚</span> SQA REVISION DEBRIEF:
+          </div>
+          <p id="debriefText"></p>
+        </div>
+
+        <!-- Action / Next Question Button -->
+        <div id="actionBtnArea" class="mt-2 flex justify-end">
+          <button id="startPlayBtn" onclick="startGame()" class="w-full md:w-auto px-8 py-3.5 rounded-xl font-display font-black text-lg bg-gradient-to-r from-neonMagenta to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white shadow-xl transform transition hover:scale-105 active:scale-95">
+            🌟 START REVISION QUIZ
+          </button>
+          <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden w-full md:w-auto px-8 py-3 rounded-xl font-display font-black text-base bg-gradient-to-r from-neonCyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-gray-950 shadow-xl transition transform hover:scale-105">
+            NEXT QUESTION ➔
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR (Lifelines & Prize Ladder Scale) -->
+    <div class="lg:col-span-4 flex flex-col gap-5 w-full">
+
+      <!-- LIFELINES PANEL -->
+      <div class="glass-panel rounded-2xl p-4">
+        <h3 class="text-xs font-black text-center text-cyan-300 uppercase tracking-widest mb-3">
+          STUDIO LIFELINES
+        </h3>
+        <div class="grid grid-cols-3 gap-2">
+          
+          <button id="life5050" onclick="use5050()" class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-purple-950/80 hover:bg-purple-800/80 border border-cyan-400/50 text-cyan-300 transition disabled:opacity-30 disabled:cursor-not-allowed group">
+            <span class="font-display font-black text-base md:text-lg group-hover:scale-110 transition">50:50</span>
+            <span class="text-[10px] font-bold text-gray-300">Remove 2</span>
+          </button>
+
+          <button id="lifeHint" onclick="useHint()" class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-purple-950/80 hover:bg-purple-800/80 border border-yellow-400/50 text-yellow-300 transition disabled:opacity-30 disabled:cursor-not-allowed group">
+            <span class="font-display font-black text-base md:text-lg group-hover:scale-110 transition">💡 HINT</span>
+            <span class="text-[10px] font-bold text-gray-300">Ms History</span>
+          </button>
+
+          <button id="lifeAudience" onclick="useAudience()" class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-purple-950/80 hover:bg-purple-800/80 border border-pink-400/50 text-pink-300 transition disabled:opacity-30 disabled:cursor-not-allowed group">
+            <span class="font-display font-black text-base md:text-lg group-hover:scale-110 transition">📊 POLL</span>
+            <span class="text-[10px] font-bold text-gray-300">Audience</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- PRIZE LADDER SCALE -->
+      <div class="glass-panel rounded-2xl p-4">
+        <h3 class="text-xs font-black text-center text-neonGold uppercase tracking-widest mb-3">
+          REVISION PRIZE LADDER
+        </h3>
+        <div id="prizeLadder" class="flex flex-col gap-1">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- AUDIENCE POLL MODAL -->
+  <div id="audienceModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 hidden">
+    <div class="glass-panel rounded-2xl p-6 max-w-md w-full border-2 border-cyan-400 shadow-2xl">
+      <h3 class="font-display font-black text-xl text-center gold-gradient-text mb-2">
+        📊 AUDIENCE POLL RESULTS
+      </h3>
+      <p class="text-xs text-gray-300 text-center mb-4">
+        We surveyed 100 history students in the studio. Here is how they voted:
+      </p>
+
+      <div id="audiencePollBars" class="flex flex-col gap-3 mb-5">
+        <!-- Bars injected via JS -->
+      </div>
+
+      <button onclick="closeAudienceModal()" class="w-full py-2.5 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-400 text-gray-950 transition">
+        CLOSE & RETURN TO GAME
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT GAME ENGINE -->
+  <script>
+    /* ==========================================================================
+       1. MASTER QUESTION BANK (32 Questions strictly sourced from SQA Booklets)
+       ========================================================================== */
+    const MASTER_QUESTIONS = [
+      // Key Issue 1: Weimar & WW1
+      {
+        category: "Key Issue 1: End of WWI & Versailles",
+        question: "What major economic hardship did the British naval U-Boat blockade cause in Germany by the end of WWI?",
+        options: [
+          "Widespread starvation and severe malnourished populations",
+          "An immediate surplus of cheap imported grain",
+          "Free electricity and coal for major German factories",
+          "Complete closure of all German naval ports without impact"
+        ],
+        answer: 0,
+        hint: "Think about how blocking food imports affected ordinary families in German cities.",
+        debrief: "The British naval blockade prevented raw materials and food from reaching Germany, resulting in widespread starvation, malnutrition, and heightened vulnerability to Spanish Influenza."
+      },
+      {
+        category: "Key Issue 1: End of WWI & Versailles",
+        question: "In late 1918, what action by German sailors at Kiel triggered the widespread mutiny that led to the Kaiser's abdication?",
+        options: [
+          "Sailors refused an order to launch a final suicidal attack against the British navy",
+          "Sailors demanded higher wages for transatlantic voyages",
+          "Sailors attempted to invade French coastal fortresses",
+          "Sailors voted to join the Russian Imperial Navy"
+        ],
+        answer: 0,
+        hint: "The sailors saw the final naval battle as a suicidal mission when the war was already lost.",
+        debrief: "At Kiel, sailors on two battleships refused orders to launch a final attack on the British navy. 800 were arrested, but mutiny spread rapidly across Germany, forcing Kaiser Wilhelm II to abdicate."
+      },
+      {
+        category: "Key Issue 1: Treaty of Versailles",
+        question: "Under the Treaty of Versailles (1919), how much were the war reparations set that Germany was forced to pay?",
+        options: [
+          "£6.6 billion",
+          "£100 million",
+          "£50 billion",
+          "£1 billion"
+        ],
+        answer: 0,
+        hint: "It was a massive financial burden that left many Germans living in deep poverty.",
+        debrief: "Germany was forced to pay £6.6 billion in reparations. This created enormous financial strain and intense resentment among the German public."
+      },
+      {
+        category: "Key Issue 1: Treaty of Versailles",
+        question: "Which territorial loss under the Treaty of Versailles particularly angered Germans because it was given to Poland?",
+        options: [
+          "West Prussia",
+          "Bavaria",
+          "Hamburg",
+          "Saxony"
+        ],
+        answer: 0,
+        hint: "This region created the 'Polish Corridor' and separated East Prussia from the rest of Germany.",
+        debrief: "Giving West Prussia to Poland angered many Germans who resented being placed under foreign Polish rule and having Germany split in two."
+      },
+      {
+        category: "Key Issue 1: Weimar Republic",
+        question: "What power did Article 48 of the Weimar Constitution grant to the President of Germany?",
+        options: [
+          "The power to pass emergency laws without the approval of the Reichstag",
+          "The right to automatically execute political criminals without trial",
+          "The ability to permanently ban all elections in Germany",
+          "The authority to declare war without army approval"
+        ],
+        answer: 0,
+        hint: "It was designed as an emergency rule clause when parliament could not reach agreement.",
+        debrief: "Article 48 allowed the President to rule by decree in an emergency. However, it was later exploited to bypass democratic parliament entirely."
+      },
+      {
+        category: "Key Issue 1: Spartacist Revolt 1919",
+        question: "Who did the Weimar government hire to violently put down the communist Spartacist Revolt in January 1919?",
+        options: [
+          "The Freikorps (ex-soldiers who hated communists)",
+          "The French Foreign Legion",
+          "The British Royal Marines",
+          "The League of Nations Police Force"
+        ],
+        answer: 0,
+        hint: "They were demobilized WWI soldiers organized into anti-communist paramilitary units.",
+        debrief: "The government used the Freikorps to crush the Spartacist Revolt. Over 100 workers were killed on 'Bloody Sunday', and leaders Rosa Luxemburg and Karl Liebknecht were murdered."
+      },
+      {
+        category: "Key Issue 1: Hyperinflation 1923",
+        question: "During the 1923 Hyperinflation crisis in Weimar Germany, how were workers frequently paid?",
+        options: [
+          "Twice a day, using wheelbarrows to carry stacks of paper money",
+          "In gold coins stamped by the French government",
+          "Once a month via electronic bank deposits",
+          "With vouchers for American grain ships"
+        ],
+        answer: 0,
+        hint: "Money lost value so fast during the day that workers had to spend wages immediately before prices doubled.",
+        debrief: "Printing excessive paper money caused hyperinflation. Money lost value hourly, forcing people to carry wheelbarrows of cash to buy basic food items or resort to bartering."
+      },
+      {
+        category: "Key Issue 1: Great Depression",
+        question: "By 1933, following the Wall Street Crash and Great Depression, how many Germans were registered as unemployed?",
+        options: [
+          "Over 6 million",
+          "500,000",
+          "2 million",
+          "15 million"
+        ],
+        answer: 0,
+        hint: "Unemployment rose drastically from 1.25 million in 1929 to a record crisis level by 1933.",
+        debrief: "Unemployment skyrocketed to over 6 million by 1933. Massive poverty and homelessness drove desperate voters toward radical parties like the Nazis."
+      },
+
+      // Key Issue 2: Rise to Power & Consolidation
+      {
+        category: "Key Issue 2: Appeal of the Nazis",
+        question: "Who was appointed Minister of Propaganda in March 1933 to control all German media and arts?",
+        options: [
+          "Joseph Goebbels",
+          "Heinrich Himmler",
+          "Hermann Göring",
+          "Reinhard Heydrich"
+        ],
+        answer: 0,
+        hint: "He orchestrated radio broadcasts, cinema, loudspeakers, and massive poster campaigns.",
+        debrief: "Joseph Goebbels converted German media, cinema, radio, and rallies into pro-Nazi propaganda platforms to brainwash the public."
+      },
+      {
+        category: "Key Issue 2: Appeal of the Nazis",
+        question: "What specific promise did Hitler make to the German middle class to win their political support?",
+        options: [
+          "He promised to destroy Communism so their wealth and property would not be seized",
+          "He promised to abolish all taxation on luxury private cars",
+          "He promised free university education in foreign countries",
+          "He promised to give every middle-class family a farm in France"
+        ],
+        answer: 0,
+        hint: "The middle class deeply feared losing their private property to a Bolshevik-style revolution.",
+        debrief: "Hitler appealed to the middle class by promising to crush Communism, protecting private businesses and property from socialist takeover."
+      },
+      {
+        category: "Key Issue 2: Consolidation of Power",
+        question: "Who was arrested inside the burning Reichstag building on 27th February 1933 and blamed by Hitler for a Communist plot?",
+        options: [
+          "Marinus van der Lubbe",
+          "Ernst Röhm",
+          "Paul von Hindenburg",
+          "Rosa Luxemburg"
+        ],
+        answer: 0,
+        hint: "He was a 24-year-old Dutch Communist found with matches and firelighters in his pockets.",
+        debrief: "Hitler used the arrest of Marinus van der Lubbe to claim a Communist conspiracy, convincing President Hindenburg to sign emergency laws suppressing civil rights."
+      },
+      {
+        category: "Key Issue 2: Consolidation of Power",
+        question: "What dictatorial power was granted to Hitler by the Enabling Act of March 1933?",
+        options: [
+          "The power to pass laws directly without the consent or vote of the Reichstag",
+          "The authority to annex neighboring countries without military approval",
+          "The right to dissolve the Catholic Church immediately",
+          "The power to replace all German police with foreign mercenaries"
+        ],
+        answer: 0,
+        hint: "It effectively ended parliamentary democracy in Germany by letting Hitler rule by decree.",
+        debrief: "The Enabling Act allowed Hitler to pass laws without parliament. He used this power to ban trade unions and outlaw all opposing political parties."
+      },
+      {
+        category: "Key Issue 2: Night of the Long Knives",
+        question: "Why did Hitler purge Ernst Röhm and the SA leadership during the Night of the Long Knives in June 1934?",
+        options: [
+          "Röhm wanted to merge the 2-million-strong SA with the army, which threatened Hitler and alarmed army generals",
+          "Röhm attempted to restore Kaiser Wilhelm II to the throne",
+          "The SA refused to wear Nazi uniforms at rallies",
+          "Röhm was discovered giving secret military plans to France"
+        ],
+        answer: 0,
+        hint: "Röhm's huge SA paramilitary force posed a potential challenge to Hitler's personal authority.",
+        debrief: "During the Night of the Long Knives (30 June 1934), the SS murdered Röhm and ~400 political opponents, securing the loyalty of the regular German Army."
+      },
+      {
+        category: "Key Issue 2: Führer Title",
+        question: "What event in August 1934 allowed Hitler to combine the offices of President and Chancellor to become 'Führer'?",
+        options: [
+          "The death of President Paul von Hindenburg",
+          "The signing of the Treaty of Versailles",
+          "The opening of the Berlin Olympic Games",
+          "The passage of the Dawes Plan"
+        ],
+        answer: 0,
+        hint: "When the aging war hero President passed away, Hitler merged the top state roles.",
+        debrief: "Upon President Hindenburg's death on 2nd August 1934, Hitler combined the roles of President and Chancellor. The army swore an oath of personal allegiance directly to him."
+      },
+
+      // Key Issue 3: Terror State & Persecution & Opposition
+      {
+        category: "Key Issue 3: Terror State",
+        question: "Who served as the feared head of the SS, Gestapo, and police network in Nazi Germany?",
+        options: [
+          "Heinrich Himmler",
+          "Albert Speer",
+          "Ludwig Müller",
+          "Gustav Stresemann"
+        ],
+        answer: 0,
+        hint: "He oversaw the police state, intelligence gathering, and concentration camp system.",
+        debrief: "Heinrich Himmler commanded the SS and Gestapo police state, enforcing totalitarian control through fear, spying, and imprisonment without trial."
+      },
+      {
+        category: "Key Issue 3: Terror State",
+        question: "Where was the first Nazi concentration camp established in March 1933, initially intended for political prisoners?",
+        options: [
+          "Dachau",
+          "Belsen",
+          "Auschwitz",
+          "Treblinka"
+        ],
+        answer: 0,
+        hint: "It was built near Munich in 1933 as a model camp to detain political opponents like Communists.",
+        debrief: "Dachau was opened in March 1933 to house political prisoners. Inmates released early spread horrific accounts of conditions to terrorize the public into obedience."
+      },
+      {
+        category: "Key Issue 3: Anti-Semitic Persecution",
+        question: "What did the 1935 Nuremberg Laws do to Jewish people living in Germany?",
+        options: [
+          "Revoked their German citizenship and banned marriage between Jews and non-Jewish Germans",
+          "Forced all Jewish families to move to agricultural farms in Bavaria",
+          "Required Jewish pupils to attend state-funded military academies",
+          "Granted Jewish citizens equal voting rights in local council elections"
+        ],
+        answer: 0,
+        hint: "Historical Context: These abhorrent laws stripped innocent citizens of civil rights based on discriminatory racial pseudoscience.",
+        debrief: "Historical Note: Nazi racial policy was an abhorrent, discriminatory ideology. The 1935 Nuremberg Laws stripped Jewish people of citizenship and legally banned intermarriage."
+      },
+      {
+        category: "Key Issue 3: Kristallnacht 1938",
+        question: "What destructive state-sponsored violence occurred across Germany on 9th November 1938 ('Kristallnacht')?",
+        options: [
+          "7,500 Jewish shops were destroyed, 400 synagogues burned, and 30,000 Jewish men sent to concentration camps",
+          "All trade union headquarters were re-opened by order of the court",
+          "German university students held strikes in protest against foreign tariffs",
+          "The Gestapo disbanded all SS Death's Head units"
+        ],
+        answer: 0,
+        hint: "Historical Context: Known as the 'Night of Broken Glass', it was a violent, state-organized assault on Jewish homes and businesses.",
+        debrief: "Historical Note: Kristallnacht was a brutal pogrom. Around 100 Jewish people were murdered, 30,000 sent to camps, and the regime imposed a 1 billion Reichsmark fine on the Jewish community."
+      },
+      {
+        category: "Key Issue 3: Church Opposition",
+        question: "What was the title of the 1937 Papal encyclical issued by the Pope that publicly attacked Hitler as a 'mad prophet'?",
+        options: [
+          "'With Burning Concern' ('Mit brennender Sorge')",
+          "'The Concordat of Peace'",
+          "'The Reich Faith Decree'",
+          "'Declaration of Nuremberg'"
+        ],
+        answer: 0,
+        hint: "It was read aloud in every Catholic church across Germany in March 1937.",
+        debrief: "Pope Pius XI issued 'With Burning Concern' in 1937. Read in Catholic churches, it condemned Nazi racial policy, broken promises, and idolization of the state."
+      },
+      {
+        category: "Key Issue 3: Youth Opposition",
+        question: "Which youth opposition group rebelled against the Nazis by wearing fashionable clothes, growing long hair, and listening to banned American jazz music?",
+        options: [
+          "The Swing Kids",
+          "The Hitler Youth",
+          "The Young German Folk",
+          "The League of German Maidens"
+        ],
+        answer: 0,
+        hint: "They formed in Hamburg and Berlin, explicitly rejecting Nazi regimentation in favor of jazz dance culture.",
+        debrief: "The Swing Kids challenged Nazi cultural control by listening to swing/jazz music (banned as 'un-German') and meeting in secret dance halls."
+      },
+      {
+        category: "Key Issue 3: Youth Opposition",
+        question: "Which university student resistance group, including brother and sister Hans and Sophie Scholl, distributed anti-Nazi leaflets before being executed in 1943?",
+        options: [
+          "The White Rose",
+          "The Edelweiss Pirates",
+          "The Cologne Partisans",
+          "The Red Orchestra"
+        ],
+        answer: 0,
+        hint: "They operated at Munich University, secretly calling for passive resistance against Nazi tyranny.",
+        debrief: "The White Rose group at Munich University bravely distributed anti-Nazi flyers revealing regime atrocities. Hans and Sophie Scholl were discovered and executed in 1943."
+      },
+
+      // Key Issue 4: Social & Economic Policies
+      {
+        category: "Key Issue 4: Nazi Economy",
+        question: "What was the ultimate economic goal of 'Autarky' pursued by the Nazi government?",
+        options: [
+          "To make Germany completely economically self-sufficient and independent of imported goods",
+          "To increase foreign imports of American cars and British textiles",
+          "To abolish all paper currency in favor of gold coins",
+          "To rely entirely on international loans from the League of Nations"
+        ],
+        answer: 0,
+        hint: "The Nazis wanted the economy ready for war without fearing a foreign naval blockade.",
+        debrief: "Autarky aimed for economic self-sufficiency in food, steel, and oil so Germany could survive wartime blockades without importing goods."
+      },
+      {
+        category: "Key Issue 4: Workers & Trade Unions",
+        question: "In May 1933, the Nazis banned all independent trade unions. What organization replaced them?",
+        options: [
+          "The German Labour Front (DAF)",
+          "The Weimar Worker Assembly",
+          "The International Red Cross",
+          "The Industrial Union of Berlin"
+        ],
+        answer: 0,
+        hint: "Led by Robert Ley, it strictly controlled worker wages, hours, and workbooks.",
+        debrief: "The Nazis abolished independent unions and replaced them with the DAF. Striking was outlawed, wage rates were frozen, and work hours increased up to 72 hours a week."
+      },
+      {
+        category: "Key Issue 4: Leisure & KDF",
+        question: "What was the purpose of the 'Strength Through Joy' (KDF) organization established by the Nazis?",
+        options: [
+          "To provide subsidized leisure activities, concerts, and cheap cruise holidays for loyal workers",
+          "To organize peaceful democratic political debates in factories",
+          "To encourage workers to form independent trade unions",
+          "To provide free medical treatment in foreign hospitals"
+        ],
+        answer: 0,
+        hint: "It kept workers happy and busy during their free time so they wouldn't oppose regime policies.",
+        debrief: "The KDF organized cheap holidays, ski trips, concerts, and sports to build worker loyalty and ensure people had no free time for anti-Nazi activities."
+      },
+      {
+        category: "Key Issue 4: The Volkswagen Scheme",
+        question: "What famous savings scheme did the KDF promote to German workers, even though no worker ever actually received one?",
+        options: [
+          "The 'People's Car' (Volkswagen)",
+          "The 'People's Motorboat'",
+          "The 'State Radio' voucher",
+          "The 'Reich Flying Glider'"
+        ],
+        answer: 0,
+        hint: "Workers paid weekly marks into a special savings book to eventually own a car.",
+        debrief: "Workers paid millions of marks into the Volkswagen savings scheme, but factories were diverted to military vehicle production for war; no customer ever received a car."
+      },
+      {
+        category: "Key Issue 4: Rearmament & Jobs",
+        question: "How did Hitler's rearmament policies help artificially reduce official unemployment figures?",
+        options: [
+          "Conscription into the armed forces and military factory jobs removed men from unemployment lists",
+          "The government paid unemployed citizens to emigrate to South America",
+          "Unemployed workers were hired as teachers in foreign schools",
+          "All factory workers were declared retired at age 30"
+        ],
+        answer: 0,
+        hint: "Expanded armies, navies, air forces (Luftwaffe), and munitions factories needed millions of men.",
+        debrief: "Reintroducing military conscription (1935) and building weapons created millions of jobs. Furthermore, women and Jews sacked from jobs were excluded from official statistics."
+      },
+      {
+        category: "Key Issue 4: Youth Movements",
+        question: "By 1936, what change was made regarding membership in Nazi youth organizations like the Hitler Youth?",
+        options: [
+          "Membership was made compulsory for all eligible young Germans",
+          "Membership was limited strictly to university graduates",
+          "Youth groups were outlawed in favor of church Sunday schools",
+          "Membership was restricted only to children of police officers"
+        ],
+        answer: 0,
+        hint: "Initially voluntary, law changes made attendance mandatory for indoctrination.",
+        debrief: "In 1936, joining Nazi youth groups became compulsory. By 1939, over 90% of German boys aged 14+ were members of the Hitler Youth."
+      },
+      {
+        category: "Key Issue 4: Female Youth (BDM)",
+        question: "What main role were teenage girls in the League of German Girls (BDM) primarily trained for?",
+        options: [
+          "Domestic duties, health, and preparing for motherhood and family life",
+          "Piloting fighter planes in the Luftwaffe",
+          "Serving as courtroom judges and lawyers",
+          "Working as heavy coal miners in Lanarkshire"
+        ],
+        answer: 0,
+        hint: "Nazi ideology restricted women's primary role to the home as wives and mothers.",
+        debrief: "The BDM trained girls aged 14-18 in domestic skills (cooking, sewing), collective gymnastics, and childcare to prepare them for traditional roles as mothers."
+      },
+      {
+        category: "Key Issue 4: Education Policies",
+        question: "How did the Nazis change the school curriculum to indoctrinate pupils with racial ideology?",
+        options: [
+          "Rewrote biology and history textbooks to teach racial pseudoscience and Aryan superiority",
+          "Replaced all science lessons with French literature",
+          "Increased religious studies to 10 hours every day",
+          "Abolished all physical education and sports training"
+        ],
+        answer: 0,
+        hint: "Academic subjects were downgraded while PE, history, and 'racial science' became mandatory.",
+        debrief: "School curricula were altered to spread Nazi ideology. Textbooks promoted militarism and racial science. Teachers had to join the Nazi Teachers' League (97% joined)."
+      },
+      {
+        category: "Key Issue 4: Role of Women",
+        question: "What summary phrase described the Nazi expectation for women's traditional role in society?",
+        options: [
+          "'Kinder, Küche, Kirche' (Children, Kitchen, Church)",
+          "'Work, Wealth, Victory'",
+          "'Liberty, Equality, Fraternity'",
+          "'Education, Industry, Power'"
+        ],
+        answer: 0,
+        hint: "Women were encouraged to focus exclusively on family, home, and traditional values.",
+        debrief: "The regime expected women to focus on 'Kinder, Küche, Kirche'. Female doctors, teachers, and civil servants were forced to resign their careers."
+      },
+      {
+        category: "Key Issue 4: Marriage Incentives",
+        question: "Under the Law for the Encouragement of Marriage, what financial bonus did newlyweds keep for each child born?",
+        options: [
+          "They kept 250 marks of their 1,000-mark government loan",
+          "They received a free house in Berlin",
+          "They were exempt from paying any food prices",
+          "They were awarded a gold watch by the army"
+        ],
+        answer: 0,
+        hint: "Couples received a 1,000-mark loan; having four children canceled the debt entirely.",
+        debrief: "To boost birth rates, newlyweds received a 1,000-mark loan. For each child born, 250 marks of loan debt was written off. Mothers with 8+ children received a Gold Mother's Cross."
+      },
+      {
+        category: "Key Issue 4: Nuremberg Rallies",
+        question: "What impression were the massive annual Nuremberg Rallies designed to convey to the public?",
+        options: [
+          "An impression of absolute power, order, military strength, and total Nazi control",
+          "A demonstration of peaceful disarmament and international friendship",
+          "A gathering to debate new democratic laws openly",
+          "An event promoting foreign imports from British trade partners"
+        ],
+        answer: 0,
+        hint: "Held in a purpose-built arena holding 400,000 people with cathedral-of-light searchlights.",
+        debrief: "The Nuremberg Rallies involved 400,000 participants, torchlight parades, and searchlights visible 100km away, serving as massive propaganda shows of absolute state power."
+      }
+    ];
+
+    /* ==========================================================================
+       2. PRIZE LADDER VALUES (£100 to £250,000)
+       ========================================================================== */
+    const PRIZE_SCALE = [
+      { level: 1, amount: "£100", safe: false },
+      { level: 2, amount: "£500", safe: false },
+      { level: 3, amount: "£1,000 🔒", safe: true },
+      { level: 4, amount: "£2,500", safe: false },
+      { level: 5, amount: "£5,000", safe: false },
+      { level: 6, amount: "£10,000 🔒", safe: true },
+      { level: 7, amount: "£25,000", safe: false },
+      { level: 8, amount: "£50,000", safe: false },
+      { level: 9, amount: "£100,000", safe: false },
+      { level: 10, amount: "🏆 £250,000 TROPHY", safe: true }
+    ];
+
+    /* ==========================================================================
+       3. REDESIGNED MS HISTORY VECTOR SVG AVATAR
+       ========================================================================== */
+    function getMsHistorySVG(state) {
+      // Facial expressions engine with friendly, approachable modern vector art
+      let eyeDraw = `<circle cx="38" cy="45" r="3.5" fill="#1e293b"/><circle cx="62" cy="45" r="3.5" fill="#1e293b"/>`;
+      let mouthDraw = `<path d="M 38 62 Q 50 72 62 62" stroke="#be123c" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+      let browDraw = `<path d="M 32 37 Q 38 35 44 38" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 56 38 Q 62 35 68 37" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+
+      if (state === 'excited') {
+        eyeDraw = `<circle cx="38" cy="44" r="4" fill="#0d9488"/><circle cx="62" cy="44" r="4" fill="#0d9488"/><circle cx="40" cy="42" r="1.5" fill="#ffffff"/><circle cx="64" cy="42" r="1.5" fill="#ffffff"/>`;
+        mouthDraw = `<path d="M 36 58 Q 50 76 64 58 Z" fill="#e11d48"/>`;
+        browDraw = `<path d="M 32 34 Q 38 30 44 35" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 56 35 Q 62 30 68 34" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      } else if (state === 'thinking') {
+        eyeDraw = `<circle cx="38" cy="43" r="3.5" fill="#1e293b"/><circle cx="62" cy="41" r="3.5" fill="#1e293b"/>`;
+        mouthDraw = `<path d="M 40 64 Q 50 60 60 63" stroke="#be123c" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+        browDraw = `<path d="M 32 34 Q 38 38 44 35" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 56 33 Q 62 30 68 34" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      } else if (state === 'celebrating') {
+        eyeDraw = `<path d="M 33 45 Q 38 38 43 45" stroke="#047857" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M 57 45 Q 62 38 67 45" stroke="#047857" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+        mouthDraw = `<path d="M 34 56 Q 50 78 66 56 Z" fill="#e11d48"/>`;
+        browDraw = `<path d="M 32 32 Q 38 28 44 32" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 56 32 Q 62 28 68 32" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      } else if (state === 'serious') {
+        eyeDraw = `<circle cx="38" cy="45" r="3" fill="#1e1b4b"/><circle cx="62" cy="45" r="3" fill="#1e1b4b"/>`;
+        mouthDraw = `<line x1="40" y1="63" x2="60" y2="63" stroke="#881337" stroke-width="3" stroke-linecap="round"/>`;
+        browDraw = `<path d="M 32 38 Q 38 41 44 39" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 56 39 Q 62 41 68 38" stroke="#451a03" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+      }
+
+      return `
+        <svg viewBox="0 0 100 100" class="w-full h-full">
+          <!-- Background Glow -->
+          <circle cx="50" cy="50" r="46" fill="#1e1b4b" />
+          
+          <!-- Soft Hair Back -->
+          <path d="M 22 45 C 18 80, 30 88, 38 88 L 62 88 C 70 88, 82 80, 78 45 C 75 22, 68 16, 50 16 C 32 16, 25 22, 22 45 Z" fill="#581c87"/>
+          
+          <!-- Face Shape -->
+          <ellipse cx="50" cy="52" rx="23" ry="25" fill="#fed7aa"/>
+
+          <!-- Soft Blush -->
+          <ellipse cx="33" cy="54" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3"/>
+          <ellipse cx="67" cy="54" rx="4" ry="2.5" fill="#f43f5e" opacity="0.3"/>
+
+          <!-- Glasses Frame -->
+          <rect x="27" y="37" width="18" height="13" rx="4" fill="none" stroke="#be123c" stroke-width="2.2"/>
+          <rect x="55" y="37" width="18" height="13" rx="4" fill="none" stroke="#be123c" stroke-width="2.2"/>
+          <line x1="45" y1="42" x2="55" y2="42" stroke="#be123c" stroke-width="2.2"/>
+
+          <!-- Eyes & Eyebrows -->
+          ${eyeDraw}
+          ${browDraw}
+
+          <!-- Cute Nose -->
+          <path d="M 50 48 L 48 53 L 51 53" stroke="#ea580c" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+          <!-- Mouth -->
+          ${mouthDraw}
+
+          <!-- Modern Hair Front/Bangs -->
+          <path d="M 26 40 C 32 24, 45 22, 50 30 C 55 22, 68 24, 74 40 C 65 26, 52 26, 50 34 C 48 26, 35 26, 26 40 Z" fill="#6b21a8"/>
+
+          <!-- Gold Hoop Earrings -->
+          <circle cx="25" cy="55" r="2.5" fill="none" stroke="#facc15" stroke-width="1.8"/>
+          <circle cx="75" cy="55" r="2.5" fill="none" stroke="#facc15" stroke-width="1.8"/>
+
+          <!-- Teacher Blazer & Lanyard -->
+          <path d="M 28 80 L 50 96 L 72 80 L 82 100 L 18 100 Z" fill="#0d9488"/>
+          <path d="M 42 82 L 50 98 L 58 82 Z" fill="#ffffff"/>
+          <!-- Lanyard Ribbon -->
+          <path d="M 40 80 L 48 98 L 52 98 L 60 80" stroke="#f43f5e" stroke-width="2" fill="none"/>
+          <!-- History Badge -->
+          <rect x="44" y="90" width="12" height="8" rx="1.5" fill="#facc15"/>
+          <line x1="46" y1="94" x2="54" y2="94" stroke="#1e1b4b" stroke-width="1.2"/>
+        </svg>
+      `;
+    }
+
+    /* ==========================================================================
+       4. AUDIO ENGINE (Web Audio API Synthesizer)
+       ========================================================================== */
+    let soundEnabled = true;
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('soundToggleBtn');
+      btn.textContent = soundEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
+    }
+
+    function playAudio(type) {
+      if (!soundEnabled) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+
+        if (type === 'start') {
+          // TV Fanfare Chime
+          [261.63, 329.63, 392.00, 523.25, 659.25].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.1, ctx.currentTime + idx * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.3);
+            osc.start(ctx.currentTime + idx * 0.08);
+            osc.stop(ctx.currentTime + idx * 0.08 + 0.3);
+          });
+        } else if (type === 'correct') {
+          // Ascending Win Chime
+          [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.12, ctx.currentTime + idx * 0.07);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.07 + 0.25);
+            osc.start(ctx.currentTime + idx * 0.07);
+            osc.stop(ctx.currentTime + idx * 0.07 + 0.25);
+          });
+        } else if (type === 'wrong') {
+          // Dramatic Buzzer Tone
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(180, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + 0.4);
+          gain.gain.setValueAtTime(0.2, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.4);
+        } else if (type === 'lifeline') {
+          // Energetic Swoosh
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(300, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.2);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.2);
+        } else if (type === 'win') {
+          // Grand Trophy Fanfare
+          [392, 523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.1 + 0.5);
+            osc.start(ctx.currentTime + idx * 0.1);
+            osc.stop(ctx.currentTime + idx * 0.1 + 0.5);
+          });
+        }
+      } catch (e) {
+        console.warn("Web Audio API unavailable:", e);
+      }
+    }
+
+    /* ==========================================================================
+       5. GAME STATE & LOGIC
+       ========================================================================== */
+    let currentQuestions = [];
+    let currentQIndex = 0;
+    let selectedOptionIndex = null;
+    let answered = false;
+    let guaranteedPrize = "£0";
+    let currentPrize = "£0";
+
+    let lifelines = {
+      fiftyFifty: true,
+      hint: true,
+      audience: true
+    };
+
+    // DOM Elements
+    const presenterAvatar = document.getElementById('presenterAvatar');
+    const presenterSpeech = document.getElementById('presenterSpeech');
+    const presenterNameTag = document.getElementById('presenterNameTag');
+    const questionCategory = document.getElementById('questionCategory');
+    const questionNumberTag = document.getElementById('questionNumberTag');
+    const questionText = document.getElementById('questionText');
+    const optionsGrid = document.getElementById('optionsGrid');
+    const debriefBox = document.getElementById('debriefBox');
+    const debriefText = document.getElementById('debriefText');
+    const prizeLadder = document.getElementById('prizeLadder');
+    const startPlayBtn = document.getElementById('startPlayBtn');
+    const nextQuestionBtn = document.getElementById('nextQuestionBtn');
+
+    // Utility: Fisher-Yates Array Shuffle
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    /*
+      DYNAMIC OPTION SHUFFLER & ANSWER REMAPPER:
+      Takes a question object from MASTER_QUESTIONS, randomly shuffles its
+      options array, and finds where the original correct answer ended up.
+    */
+    function prepareQuestionWithShuffledOptions(origQ) {
+      const originalCorrectText = origQ.options[origQ.answer];
+      const shuffledOptions = shuffleArray(origQ.options);
+      const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+
+      return {
+        ...origQ,
+        options: shuffledOptions,
+        answer: newCorrectIndex
+      };
+    }
+
+    function setPresenter(state, text) {
+      presenterAvatar.innerHTML = getMsHistorySVG(state);
+      presenterSpeech.textContent = text;
+    }
+
+    function renderPrizeLadder() {
+      let html = '';
+      for (let i = PRIZE_SCALE.length - 1; i >= 0; i--) {
+        const p = PRIZE_SCALE[i];
+        const isCurrent = (i === currentQIndex && answered === false);
+        const isPassed = (i < currentQIndex);
+
+        let bgClass = "bg-purple-950/40 text-gray-400 border-purple-900/40";
+        if (isCurrent) {
+          bgClass = "bg-gradient-to-r from-neonGold to-yellow-600 text-gray-950 font-black border-yellow-300 shadow-lg scale-105";
+        } else if (isPassed) {
+          bgClass = "bg-emerald-950/60 text-emerald-400 border-emerald-700/50 font-bold";
+        } else if (p.safe) {
+          bgClass = "bg-purple-900/60 text-neonGold border-yellow-500/50 font-bold";
+        }
+
+        html += `
+          <div class="flex items-center justify-between px-3 py-1.5 rounded-lg border text-xs transition-all ${bgClass}">
+            <span>Q${p.level}: ${p.amount}</span>
+            <span class="text-[10px] uppercase tracking-wider">${p.safe ? 'GUARANTEED' : ''}</span>
+          </div>
+        `;
+      }
+      prizeLadder.innerHTML = html;
+    }
+
+    function updateLifelineUI() {
+      const b50 = document.getElementById('life5050');
+      const bHint = document.getElementById('lifeHint');
+      const bAud = document.getElementById('lifeAudience');
+
+      b50.disabled = !lifelines.fiftyFifty || answered;
+      bHint.disabled = !lifelines.hint || answered;
+      bAud.disabled = !lifelines.audience || answered;
+    }
+
+    function startGame() {
+      playAudio('start');
+      
+      // Select 10 random questions and dynamically shuffle their options (A, B, C, D)
+      const selectedRaw = shuffleArray(MASTER_QUESTIONS).slice(0, 10);
+      currentQuestions = selectedRaw.map(q => prepareQuestionWithShuffledOptions(q));
+      
+      currentQIndex = 0;
+      answered = false;
+      guaranteedPrize = "£0";
+      currentPrize = "£0";
+
+      lifelines = { fiftyFifty: true, hint: true, audience: true };
+      updateLifelineUI();
+
+      startPlayBtn.classList.add('hidden');
+      loadQuestion();
+    }
+
+    function resetGame() {
+      currentQuestions = [];
+      currentQIndex = 0;
+      answered = false;
+      guaranteedPrize = "£0";
+      currentPrize = "£0";
+      lifelines = { fiftyFifty: true, hint: true, audience: true };
+      updateLifelineUI();
+
+      startPlayBtn.classList.remove('hidden');
+      nextQuestionBtn.classList.add('hidden');
+      debriefBox.classList.add('hidden');
+      optionsGrid.innerHTML = '';
+      questionCategory.textContent = "STUDIO REVISION READY";
+      questionNumberTag.textContent = "WELCOME";
+      questionText.textContent = "Welcome to the TV Studio! Click 'START REVISION QUIZ' to pick 10 fresh randomized questions!";
+
+      setPresenter('excited', "Ready to test your SQA History knowledge? I've got 10 fresh randomized questions ready for you! Let's hit that £250,000 Trophy!");
+      renderPrizeLadder();
+    }
+
+    function loadQuestion() {
+      answered = false;
+      selectedOptionIndex = null;
+      debriefBox.classList.add('hidden');
+      nextQuestionBtn.classList.add('hidden');
+      updateLifelineUI();
+
+      const q = currentQuestions[currentQIndex];
+      questionCategory.textContent = q.category;
+      questionNumberTag.textContent = `QUESTION ${currentQIndex + 1} OF 10`;
+      questionText.textContent = q.question;
+
+      if (q.category.includes("Anti-Semitic") || q.category.includes("Kristallnacht") || q.category.includes("Terror")) {
+        setPresenter('serious', `Question ${currentQIndex + 1} is for ${PRIZE_SCALE[currentQIndex].amount}. Take your time and think carefully about the historical evidence.`);
+      } else {
+        setPresenter('thinking', `Here comes Question ${currentQIndex + 1} for ${PRIZE_SCALE[currentQIndex].amount}! Which option is historically accurate?`);
+      }
+
+      // Render options grid
+      let html = '';
+      q.options.forEach((optText, idx) => {
+        const letters = ['A', 'B', 'C', 'D'];
+        html += `
+          <button id="optBtn_${idx}" onclick="selectAnswer(${idx})" class="btn-quiz rounded-xl p-3.5 text-left font-semibold text-xs md:text-sm text-gray-100 flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-purple-900 border border-cyan-400 text-neonCyan font-display font-black flex items-center justify-center flex-shrink-0">
+              ${letters[idx]}
+            </span>
+            <span class="flex-1">${optText}</span>
+          </button>
+        `;
+      });
+      optionsGrid.innerHTML = html;
+
+      renderPrizeLadder();
+    }
+
+    function selectAnswer(optIdx) {
+      if (answered) return;
+      answered = true;
+      selectedOptionIndex = optIdx;
+      updateLifelineUI();
+
+      const q = currentQuestions[currentQIndex];
+      const isCorrect = (optIdx === q.answer);
+
+      // Highlight options
+      for (let i = 0; i < q.options.length; i++) {
+        const btn = document.getElementById(`optBtn_${i}`);
+        if (btn) {
+          btn.disabled = true;
+          if (i === q.answer) {
+            btn.classList.add('correct');
+          } else if (i === optIdx && !isCorrect) {
+            btn.classList.add('wrong');
+          }
+        }
+      }
+
+      // Show Debrief Box
+      document.getElementById('debriefText').textContent = q.debrief;
+      debriefBox.classList.remove('hidden');
+
+      if (isCorrect) {
+        playAudio('correct');
+        currentPrize = PRIZE_SCALE[currentQIndex].amount;
+        if (PRIZE_SCALE[currentQIndex].safe) {
+          guaranteedPrize = PRIZE_SCALE[currentQIndex].amount;
+        }
+
+        if (currentQIndex === 9) {
+          playAudio('win');
+          setPresenter('celebrating', `FANTASTIC! YOU WON THE £250,000 REVISION TROPHY! You demonstrated outstanding mastery of Hitler & Nazi Germany!`);
+          nextQuestionBtn.classList.add('hidden');
+          startPlayBtn.textContent = "🏆 PLAY AGAIN FOR A NEW QUESTION SET";
+          startPlayBtn.classList.remove('hidden');
+        } else {
+          setPresenter('excited', `SPOT ON! That is historically accurate! You've secured ${currentPrize}! Click 'NEXT QUESTION' when ready.`);
+          nextQuestionBtn.classList.remove('hidden');
+        }
+      } else {
+        playAudio('wrong');
+        const correctLetter = ['A', 'B', 'C', 'D'][q.answer];
+        setPresenter('serious', `Ah, that's not quite right. The correct answer was option ${correctLetter}. You leave with your guaranteed prize of ${guaranteedPrize}. Review the SQA debrief below!`);
+        nextQuestionBtn.classList.add('hidden');
+        startPlayBtn.textContent = "🔄 RESTART & TRY A NEW QUESTION SET";
+        startPlayBtn.classList.remove('hidden');
+      }
+
+      renderPrizeLadder();
+    }
+
+    function nextQuestion() {
+      currentQIndex++;
+      if (currentQIndex < currentQuestions.length) {
+        loadQuestion();
+      }
+    }
+
+    /* ==========================================================================
+       6. LIFELINES LOGIC (50:50, Hint, Audience Poll)
+       ========================================================================== */
+    function use5050() {
+      if (!lifelines.fiftyFifty || answered) return;
+      lifelines.fiftyFifty = false;
+      playAudio('lifeline');
+      updateLifelineUI();
+
+      const q = currentQuestions[currentQIndex];
+      let indices = [0, 1, 2, 3].filter(i => i !== q.answer);
+      indices = shuffleArray(indices);
+
+      // Hide 2 incorrect buttons dynamically
+      indices.slice(0, 2).forEach(i => {
+        const btn = document.getElementById(`optBtn_${i}`);
+        if (btn) {
+          btn.style.opacity = '0.2';
+          btn.disabled = true;
+        }
+      });
+
+      setPresenter('excited', "I've wiped out 2 incorrect options for you! You now have a 50:50 choice remaining!");
+    }
+
+    function useHint() {
+      if (!lifelines.hint || answered) return;
+      lifelines.hint = false;
+      playAudio('lifeline');
+      updateLifelineUI();
+
+      const q = currentQuestions[currentQIndex];
+      setPresenter('thinking', `Here is my teacher hint: ${q.hint}`);
+    }
+
+    function useAudience() {
+      if (!lifelines.audience || answered) return;
+      lifelines.audience = false;
+      playAudio('lifeline');
+      updateLifelineUI();
+
+      const q = currentQuestions[currentQIndex];
+      const letters = ['A', 'B', 'C', 'D'];
+      
+      let correctPct = Math.floor(Math.random() * 25) + 55; // 55% - 80%
+      let remaining = 100 - correctPct;
+      let p1 = Math.floor(Math.random() * (remaining * 0.6));
+      let p2 = Math.floor(Math.random() * (remaining - p1));
+      let p3 = remaining - p1 - p2;
+
+      let pList = [0, 0, 0, 0];
+      pList[q.answer] = correctPct;
+      let otherIndices = [0, 1, 2, 3].filter(i => i !== q.answer);
+      pList[otherIndices[0]] = p1;
+      pList[otherIndices[1]] = p2;
+      pList[otherIndices[2]] = p3;
+
+      let html = '';
+      letters.forEach((lettr, idx) => {
+        html += `
+          <div>
+            <div class="flex justify-between text-xs font-bold mb-1">
+              <span>Option ${lettr}</span>
+              <span>${pList[idx]}%</span>
+            </div>
+            <div class="w-full h-3 rounded-full bg-purple-950 overflow-hidden border border-purple-800">
+              <div class="h-full bg-gradient-to-r from-neonCyan to-neonMagenta transition-all duration-1000" style="width: ${pList[idx]}%"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('audiencePollBars').innerHTML = html;
+      document.getElementById('audienceModal').classList.remove('hidden');
+      setPresenter('excited', "The studio audience has cast their votes! Check the poll breakdown on screen!");
+    }
+
+    function closeAudienceModal() {
+      document.getElementById('audienceModal').classList.add('hidden');
+    }
+
+    /* ==========================================================================
+       7. INITIALIZATION ENGINE
+       ========================================================================== */
+    window.onload = function() {
+      resetGame();
+    };
+  </script>
+</body>
+</html>
